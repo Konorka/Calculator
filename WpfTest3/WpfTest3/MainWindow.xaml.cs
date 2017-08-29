@@ -54,14 +54,7 @@ namespace WpfTest3
         {
             if (isOperator)
             {
-                if (isFirstNumber)
-                {
-                    firstNumber = int.Parse(valueTextBox.Text);
-                    
-                    calculatorLabel.Content = firstNumber;
-                    solution = firstNumber;
-                }
-                else
+                
                 calculatorLabel.Content += valueTextBox.Text;
 
                 var button = (Button)sender;
@@ -70,26 +63,21 @@ namespace WpfTest3
                 isOperator = false;
                 if (value=='+' )
                 {
-                    if (isFirstNumber)
-                    {
-                        solution += (int.Parse(valueTextBox.Text) - firstNumber);
-                        valueTextBox.Text = "";
-                        valueTextBox.Text = solution.ToString();
-                        isFirstNumber = false;
-                    }
-                    else {
+                   
                         solution += int.Parse(valueTextBox.Text);
                         valueTextBox.Text = "";
                         valueTextBox.Text = solution.ToString();
-                    }
                    
+                       
+                           
                 }
                 
                 else if (value == '-')
                 {
+
                     if (isFirstNumber)
                     {
-                        solution -= (int.Parse(valueTextBox.Text) - firstNumber);
+                        solution -= (int.Parse(valueTextBox.Text) - (2 * (int.Parse(valueTextBox.Text))));
                         valueTextBox.Text = "";
                         valueTextBox.Text = solution.ToString();
                         isFirstNumber = false;
