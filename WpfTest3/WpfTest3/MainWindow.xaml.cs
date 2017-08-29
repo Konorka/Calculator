@@ -28,7 +28,7 @@ namespace WpfTest3
         }
         bool isOperator;
         int solution = 0;
-        int firstNumber = 0;
+        
         bool isFirstNumber = true;
         
         private void NumberClick(object sender, RoutedEventArgs e)
@@ -62,16 +62,12 @@ namespace WpfTest3
                 calculatorLabel.Content  += value.ToString();
                 isOperator = false;
                 if (value=='+' )
-                {
-                   
+                { 
                         solution += int.Parse(valueTextBox.Text);
                         valueTextBox.Text = "";
-                        valueTextBox.Text = solution.ToString();
-                   
-                       
-                           
+                        valueTextBox.Text = solution.ToString();  
                 }
-                
+
                 else if (value == '-')
                 {
 
@@ -91,11 +87,27 @@ namespace WpfTest3
                 }
                 else if (value == '*')
                 {
+                    if (isFirstNumber)
+                    {
+                        solution = 1;
+                        solution = (solution * int.Parse(valueTextBox.Text));
+                        valueTextBox.Text = "";
+                        valueTextBox.Text = solution.ToString();
+                        isFirstNumber = false;
+                    }
+                    else
+                    {
+                        solution = (solution * int.Parse(valueTextBox.Text));
+                        valueTextBox.Text = "";
+                        valueTextBox.Text = solution.ToString();
+                    }
 
-                }
+                    }
                 else if (value =='/')
                 {
-
+                    solution = int.Parse(valueTextBox.Text);
+                    valueTextBox.Text = "";
+                    valueTextBox.Text = solution.ToString();
                 }
             }
 
@@ -108,7 +120,7 @@ namespace WpfTest3
             valueTextBox.Text= "";
             isOperator = false;
             solution = 0;
-            firstNumber = 0;
+            
             isFirstNumber = true;
             calculatorLabel.Content = "";
         }
