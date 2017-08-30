@@ -27,7 +27,7 @@ namespace WpfTest3
             
         }
         bool isOperator;
-        int solution = 0;
+        double solution = 0;
         
         bool isFirstNumber = true;
         
@@ -40,7 +40,7 @@ namespace WpfTest3
             
             isOperator = true;
             var button = (Button)sender;
-            var value = int.Parse(button.Content.ToString());
+            var value = double.Parse(button.Content.ToString());
            
             if (valueTextBox.Text == "0" && value == 0)
                 valueTextBox.Text = value.ToString();
@@ -63,7 +63,7 @@ namespace WpfTest3
                 isOperator = false;
                 if (value=='+' )
                 { 
-                        solution += int.Parse(valueTextBox.Text);
+                        solution += double.Parse(valueTextBox.Text);
                         valueTextBox.Text = "";
                         valueTextBox.Text = solution.ToString();  
                 }
@@ -73,14 +73,14 @@ namespace WpfTest3
 
                     if (isFirstNumber)
                     {
-                        solution -= (int.Parse(valueTextBox.Text) - (2 * (int.Parse(valueTextBox.Text))));
+                        solution -= (double.Parse(valueTextBox.Text) - (2 * (double.Parse(valueTextBox.Text))));
                         valueTextBox.Text = "";
                         valueTextBox.Text = solution.ToString();
                         isFirstNumber = false;
                     }
                     else
                     {
-                        solution -= int.Parse(valueTextBox.Text);
+                        solution -= double.Parse(valueTextBox.Text);
                         valueTextBox.Text = "";
                         valueTextBox.Text = solution.ToString();
                     }
@@ -90,14 +90,14 @@ namespace WpfTest3
                     if (isFirstNumber)
                     {
                         solution = 1;
-                        solution = (solution * int.Parse(valueTextBox.Text));
+                        solution = (solution * double.Parse(valueTextBox.Text));
                         valueTextBox.Text = "";
                         valueTextBox.Text = solution.ToString();
                         isFirstNumber = false;
                     }
                     else
                     {
-                        solution = (solution * int.Parse(valueTextBox.Text));
+                        solution = (solution * double.Parse(valueTextBox.Text));
                         valueTextBox.Text = "";
                         valueTextBox.Text = solution.ToString();
                     }
@@ -105,9 +105,16 @@ namespace WpfTest3
                     }
                 else if (value =='/')
                 {
-                    solution = int.Parse(valueTextBox.Text);
-                    valueTextBox.Text = "";
-                    valueTextBox.Text = solution.ToString();
+                    if (valueTextBox.Text!="0" && solution!=0)
+                    {
+                        solution = (solution/double.Parse(valueTextBox.Text));
+                        valueTextBox.Text = "";
+                        valueTextBox.Text = solution.ToString();
+                    }else
+                    {
+                        MessageBox.Show("Nem lehet nullával osztani");
+                    }
+                    
                 }
             }
 
